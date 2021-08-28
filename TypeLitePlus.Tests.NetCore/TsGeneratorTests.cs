@@ -466,6 +466,18 @@ namespace TypeLitePlus.Tests.NetCore
             Assert.True(script.IndexOf("TypeLitePlus.Tests.NetCore.TestModels.Namespace2") < script.IndexOf("TypeLitePlus.Tests.NetCore.TestModels.Namespace1"));
         }
 
+        [Fact]
+        public void EnumWithConstAssertion()
+        {
+            var ts = TypeScript.Definitions()
+                .EnumAsConstAssertion(true)
+                .For<Item>()
+                .Generate();
+
+            Assert.Contains("const ItemType", ts);
+            Assert.Contains("} as const;", ts);
+            Assert.Contains("export type ItemType = typeof ItemType[keyof typeof ItemType];", ts);
+        }
         #endregion
 
     }

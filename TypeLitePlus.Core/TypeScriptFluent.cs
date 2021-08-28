@@ -68,6 +68,17 @@ namespace TypeLitePlus
         }
 
         /// <summary>
+        /// Whether the enums should be generated as 'as const'
+        /// </summary>
+        /// <param name="value">Boolean value indicating whether the enums should be generated as 'as const'</param>
+        /// <returns>Instance of the TypeScriptFluent that enables fluent configuration.</returns>
+        public TypeScriptFluent EnumAsConstAssertion(bool value = true)
+        {
+            _scriptGenerator.EnumAsConstAssertion = value;
+            return this;
+        }
+
+        /// <summary>
         /// Adds specific class with all referenced classes to the model.
         /// </summary>
         /// <typeparam name="T">The class type to add.</typeparam>
